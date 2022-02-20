@@ -1,18 +1,19 @@
 package StepDefinition;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -68,7 +69,10 @@ public class LoginStep {
 		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		//String actualString1 = driver.findElement(By.xpath(name_of_user)).getText();
 		//assertTrue(actualString1.contains("Fioni"));
-		Thread.sleep(4000);
+		//Thread.sleep(000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));    
+		By elem_dynamic = By.xpath(banner_success_login);
+		wait.until(ExpectedConditions.presenceOfElementLocated(elem_dynamic));
 		if(driver.findElements(By.xpath(banner_success_login)).size() != 0){
 			String actualString2 = driver.findElement(By.xpath(banner_success_login)).getText();
 			assertTrue(actualString2.contains("Kamu telah Login sebagai fioni"));
